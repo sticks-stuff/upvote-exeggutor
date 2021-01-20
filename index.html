@@ -13,18 +13,19 @@
     <img src="https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png">
     <div id="options">
         <label for="sort">Sort</label>
-        <select name="sort" id="sort">
+        <select name="sort" id="sort" onchange="chooseSort()">
             <option value="hot">Hot</option>
             <option value="new">New</option>
             <option value="top">Top</option>
             <option value="controversial">Controversial</option>
         </select>
-        <div id="time" style="display:none;">
+        <div id="time" style="display:none;" onchange="chooseTime()">
             <label for="time">Time</label>
             <select name="time" id="timeSelect">
                 <option value="hour">Past hour</option>
                 <option value="day">Past 24 hours</option>
                 <option value="week">Past week</option>
+                <option value="month">Past month</option>
                 <option value="all">All</option>
             </select>
         </div>
