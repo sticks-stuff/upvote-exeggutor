@@ -1,7 +1,16 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
+
+a > img, video, a {
+    height: calc(100vw * (46 / 70));
+    width: 100vw;
+    object-fit: cover;
+    margin: 0;
+    padding: 0;
+}
+
 img, video {
     height: calc(100vw * (46 / 70));
     width: 100vw;
-
     object-fit: cover;
     margin: 0;
     padding: 0;
@@ -23,4 +32,14 @@ body {
     margin: 0;
     width: 100%;
     overflow-x: hidden;
+}
+
+#options {
+    font-family: 'Open Sans', sans-serif;
+	position: fixed;
+	opacity: 0.85;
+	bottom: 0;
+    right: 0;
+    width: auto;
+	background-color: white;
 }
