@@ -92,7 +92,7 @@ function createTopPosts(sort, time) {
             queued = false;
         });
     } else {
-        reddit[sort]("upvoteexeggutor").t(time).limit(20).after(lastPost).fetch(function (res) {
+        reddit[sort]("upvoteexeggutor").t(time).limit(20).fetch(function (res) {
             for (var i = 0; i < res.data.children.length; i++) {
                 var link = document.createElement("a");
                 if(res.data.children[i].data.url != "https://i.redd.it/n1oie6joe0vx.jpg") {
