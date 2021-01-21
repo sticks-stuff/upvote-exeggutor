@@ -10,7 +10,7 @@ var isUriImage = function(uri) { //stolen from https://stackoverflow.com/a/19395
     //get the last part ( should be the extension )
     var extension = parts[parts.length-1];
     //define some image types to test against
-    var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp'];
+    var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp', 'gifv'];
     //check if the extension matches anything in the list.
     if(imageTypes.indexOf(extension) !== -1) {
         return true;   
