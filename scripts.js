@@ -94,7 +94,6 @@ function morePosts() {
         history.scrollRestoration = 'manual';
     }
     morePosts();
-    Math.max(document.body.offsetHeight - (window.pageYOffset + window.innerHeight), 0);
     window.addEventListener("scroll",function(){
         if((Math.max(document.body.offsetHeight - (window.pageYOffset + window.innerHeight), 0) < 5000) && queued === false) {
             morePosts();
