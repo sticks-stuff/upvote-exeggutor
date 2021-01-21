@@ -2,6 +2,31 @@ var lastPost = "";
 var queued = false;
 var sorting = decodeURIComponent(window.location.hash.slice(1)).split("?");
 
+var isUriImage = function(uri) { //stolen from https://stackoverflow.com/a/19395606
+    //make sure we remove any nasty GET params 
+    uri = uri.split('?')[0];
+    //moving on, split the uri into parts that had dots before them
+    var parts = uri.split('.');
+    //get the last part ( should be the extension )
+    var extension = parts[parts.length-1];
+    //define some image types to test against
+    var imageTypes = ['jpg','jpeg','tiff','png','gif','bmp'];
+    //check if the extension matches anything in the list.
+    if(imageTypes.indexOf(extension) !== -1) {
+        return true;   
+    }
+};
+
+function chooseSort() {
+    window.location.hash = document.getElementById("sort").value;
+    location.reload();
+}
+
+function chooseTime() {
+    window.location.hash = document.getElementById("sort").value + "?" + document.getElementById("timeSelect").value;
+    location.reload();
+}
+
 function evalPost(postData) {
     var link = document.createElement("a");
     link.href = "https://reddit.com" + postData.permalink;
@@ -14,12 +39,15 @@ function evalPost(postData) {
             video.playsinline = "true";
             video.src = postData.media.reddit_video.fallback_url + 'mp4';
             link.appendChild(video);
-
         } else {
-            var img = document.createElement("img");
-            img.src = postData.url;
-            img.alt = postData.title;
-            link.appendChild(img);
+            if(isUriImage(postData.url) === true) {
+                var img = document.createElement("img");
+                img.src = postData.url;
+                img.alt = postData.title;
+                link.appendChild(img);
+            } else {
+                return;
+            }
         }
         lastPost = postData.name;
         document.getElementById("container").appendChild(link);
@@ -74,13 +102,3 @@ function morePosts() {
         }
     });
 })();
-
-function chooseSort() {
-    window.location.hash = document.getElementById("sort").value;
-    location.reload();
-}
-
-function chooseTime() {
-    window.location.hash = document.getElementById("sort").value + "?" + document.getElementById("timeSelect").value;
-    location.reload();
-}
