@@ -133,12 +133,17 @@ function createTopPosts(sort, time) {
         if(sorting[0] === "controversial" || sorting[0] === "top") {
             document.getElementById("time").style.display = "revert";
             if(sorting[1] != undefined) {
+                document.getElementById("sort").value = sorting[0];
+                document.getElementById("timeSelect").value = sorting[1];
                 createTopPosts(sorting[0], sorting[1]);
             } else {
+                document.getElementById("sort").value = sorting[0];
+                document.getElementById("timeSelect").value = "all";
                 createTopPosts(sorting[0], document.getElementById("timeSelect").value);
             }
         } else {
             createPosts(sorting[0]);
+            document.getElementById("sort").value = sorting[0];
         }
     } else {
         createPosts(document.getElementById("sort").value);
