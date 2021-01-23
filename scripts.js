@@ -1,6 +1,7 @@
 var lastPost = "";
 var queued = false;
 var sorting = decodeURIComponent(window.location.hash.slice(1)).split("?");
+var end = false;
 
 var isUriImage = function(uri) { //stolen from https://stackoverflow.com/a/19395606
     //make sure we remove any nasty GET params 
@@ -55,32 +56,36 @@ function evalPost(postData) {
 } 
 
 function createPosts(sort, time) {
-    if(time != undefined) {
-        reddit[sort]("upvoteexeggutor").t(time).limit(20).after(lastPost).fetch(function (res) { //suprisingly it does not care if you provide an empty string as last post
-            for (var i = 0; i < res.data.children.length; i++) {
-                evalPost(res.data.children[i].data);
-            }
-            if(res.data.children.length < 19) {
-                var img = document.createElement("img");
-                img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
-                img.alt = "Legs";
-                document.getElementById("container").appendChild(img);
-            }
-            queued = false;
-        });
-    } else {
-        reddit[sort]("upvoteexeggutor").limit(20).after(lastPost).fetch(function (res) {
-            for (var i = 0; i < res.data.children.length; i++) {
-                evalPost(res.data.children[i].data);
-            }
-            if(res.data.children.length < 19) {
-                var img = document.createElement("img");
-                img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
-                img.alt = "Legs";
-                document.getElementById("container").appendChild(img);
-            }
-            queued = false;
-        });
+    if(end === false) {
+        if(time != undefined) {
+            reddit[sort]("upvoteexeggutor").t(time).limit(20).after(lastPost).fetch(function (res) { //suprisingly it does not care if you provide an empty string as last post
+                for (var i = 0; i < res.data.children.length; i++) {
+                    evalPost(res.data.children[i].data);
+                }
+                if(res.data.children.length < 19) {
+                    var img = document.createElement("img");
+                    img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
+                    img.alt = "Legs";
+                    document.getElementById("container").appendChild(img);
+                    end = true;
+                }
+                queued = false;
+            });
+        } else {
+            reddit[sort]("upvoteexeggutor").limit(20).after(lastPost).fetch(function (res) {
+                for (var i = 0; i < res.data.children.length; i++) {
+                    evalPost(res.data.children[i].data);
+                }
+                if(res.data.children.length < 19) {
+                    var img = document.createElement("img");
+                    img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
+                    img.alt = "Legs";
+                    document.getElementById("container").appendChild(img);
+                    end = true;
+                }
+                queued = false;
+            });
+        }
     }
 }
 
