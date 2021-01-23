@@ -60,12 +60,24 @@ function createPosts(sort, time) {
             for (var i = 0; i < res.data.children.length; i++) {
                 evalPost(res.data.children[i].data);
             }
+            if(res.data.children.length < 19) {
+                var img = document.createElement("img");
+                img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
+                img.alt = "Legs";
+                document.getElementById("container").appendChild(img);
+            }
             queued = false;
         });
     } else {
         reddit[sort]("upvoteexeggutor").limit(20).after(lastPost).fetch(function (res) {
             for (var i = 0; i < res.data.children.length; i++) {
                 evalPost(res.data.children[i].data);
+            }
+            if(res.data.children.length < 19) {
+                var img = document.createElement("img");
+                img.src = "https://b.thumbs.redditmedia.com/B0Ekc6wMDxg-GjCcx-lLLKRJ05ujSm1zNN-EFhRJppE.png";
+                img.alt = "Legs";
+                document.getElementById("container").appendChild(img);
             }
             queued = false;
         });
