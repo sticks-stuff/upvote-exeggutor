@@ -1,37 +1,24 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
 a > img, video, a {
-    height: calc(100vw * (46 / 70));
-    width: 100vw;
-    object-fit: cover;
+    height: 100%;
+    width: 100%;
     margin: 0;
     padding: 0;
 }
 
-img, video {
-    height: calc(100vw * (46 / 70));
-    width: 100vw;
-    object-fit: cover;
+a {
     margin: 0;
     padding: 0;
+    width: 471px;
+    height: calc(100% * (46 / 70));
 }
 
-@media (min-width:100vh) { 
-    a > img, video, a {
-        height: calc(100vh * (46 / 70));
-        width: 100vh;
-        object-fit: cover;
-        margin: 0;
-        padding: 0;
+@media (max-width:100vh) { 
+    a {
+        width: 100vw;
+        height: auto;
     }
-    
-    img, video {
-        height: calc(100vh * (46 / 70));
-        width: 100vh;
-        object-fit: cover;
-        margin: 0;
-        padding: 0;
-    }    
 }
 
 #container {
