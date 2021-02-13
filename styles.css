@@ -1,6 +1,6 @@
 @import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&display=swap');
 
-a > img, video, a {
+a > img, video {
     height: 100%;
     display: flex;
     width: 100%;
